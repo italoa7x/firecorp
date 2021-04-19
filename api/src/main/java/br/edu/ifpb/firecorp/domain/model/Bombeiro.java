@@ -1,12 +1,12 @@
 package br.edu.ifpb.firecorp.domain.model;
 
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 import lombok.EqualsAndHashCode;
@@ -26,15 +26,17 @@ public class Bombeiro {
 	
 	private String matricula;
 	
-	private Boolean ausente;
+	private Boolean ausente = false;
 	
 	@Enumerated(EnumType.ORDINAL)
 	private TipoPatente tipoPatente;
 	
 	@OneToOne
+	@JoinColumn(nullable = false)
 	private Conta conta;
 	
-	@Embedded
+	@OneToOne
+	@JoinColumn(nullable = false)
 	private Pessoa pessoa;
 
 }

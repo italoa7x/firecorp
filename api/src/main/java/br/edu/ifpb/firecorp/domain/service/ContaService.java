@@ -19,6 +19,8 @@ public class ContaService {
 	
 	@Transactional
 	public Conta salvar(Conta conta) {
+		contaRepository.detach(conta);
+		
 		Optional<Conta> contaEmail = contaRepository.findByEmailIgnoreCase(conta.getEmail());
 		
 		if (contaEmail.isPresent() && !conta.equals(contaEmail.get())) {

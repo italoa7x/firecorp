@@ -7,6 +7,8 @@ import lombok.Setter;
 @Setter
 public class EnderecoOutput {
 	
+	private Long id;
+	
 	private String rua;
 	
 	private Integer numero;

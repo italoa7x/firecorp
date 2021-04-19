@@ -8,6 +8,8 @@ import lombok.Setter;
 @Setter
 public class BombeiroOutput {
 	
+	private Long id;
+	
 	private String matricula;
 	
 	private TipoPatente tipoPatente;

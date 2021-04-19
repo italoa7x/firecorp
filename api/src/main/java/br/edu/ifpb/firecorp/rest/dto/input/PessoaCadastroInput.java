@@ -5,6 +5,8 @@ import java.time.LocalDate;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import br.edu.ifpb.firecorp.domain.model.Sexo;
 import lombok.Getter;
 import lombok.Setter;
@@ -25,6 +27,7 @@ public class PessoaCadastroInput {
 	@NotBlank
 	private String orgaoExpedidor;
 	
+	@JsonFormat(pattern = "dd-MM-yyyy")
 	private LocalDate dataNascimento;
 	
 	@NotNull

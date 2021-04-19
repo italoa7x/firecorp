@@ -7,6 +7,8 @@ import lombok.Setter;
 @Setter
 public class ContaOutput {
 	
+	private Long id;
+	
 	private String email;
 
 }

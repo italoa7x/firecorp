@@ -2,6 +2,8 @@ package br.edu.ifpb.firecorp.rest.dto.output;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import br.edu.ifpb.firecorp.domain.model.Sexo;
 import lombok.Getter;
 import lombok.Setter;
@@ -9,6 +11,8 @@ import lombok.Setter;
 @Getter
 @Setter
 public class PessoaOutput {
+	
+	private Long id;
 	
 	private String nome;
 	
@@ -18,6 +22,7 @@ public class PessoaOutput {
 	
 	private String orgaoExpedidor;
 	
+	@JsonFormat(pattern = "dd-MM-yyyy")
 	private LocalDate dataNascimento;
 	
 	private Sexo sexo;

@@ -42,7 +42,7 @@ public class Pessoa {
 	
 	private String telefone;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	@JoinColumn(nullable = false)
 	private Endereco endereco;
 

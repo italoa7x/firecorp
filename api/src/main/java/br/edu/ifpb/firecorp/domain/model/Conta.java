@@ -4,8 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.Transient;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -26,8 +24,8 @@ public class Conta {
 	
 	private String senha;
 	
-	@Transient
-	@OneToOne(mappedBy = "conta")
-	private Bombeiro bombeiro;
-
+	public boolean isNova() {
+		return id == null;
+	}
+	
 }

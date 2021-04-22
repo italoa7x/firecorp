@@ -1,4 +1,7 @@
-@import '~bootstrap/dist/css/bootstrap.min.css';
-
-@import '~ng-wizard/themes/ng_wizard.min.css';
-@import '~ng-wizard/themes/ng_wizard_theme_circles.min.css';
+.mat-stepper-horizontal {
+    margin-top: 8px;
+  }
+  
+  .mat-form-field {
+    margin-top: 16px;
+  }

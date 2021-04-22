@@ -1,24 +1,41 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
+
 @Component({
   selector: 'app-cadastro',
   templateUrl: './cadastro.component.html',
   styleUrls: ['./cadastro.component.css']
 })
 export class CadastroComponent implements OnInit {
-  isLinear = false;
+  isLinear = true;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
+  thirdFormGroup: FormGroup;
 
   constructor(private _formBuilder: FormBuilder) {}
 
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required]
+      firstCtrlNome: ['', Validators.required],
+      firstCtrlData: ['', Validators.required],
+      firstCtrlRG: ['', Validators.required],
+      firstCtrlFone: ['', Validators.required],
+      firstCtrlCPF: ['', Validators.required],
+      firstCtrlExpedidor: ['', Validators.required],
+      firstCtrlSexo: ['', Validators.required],
     });
     this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required]
+      secondCtrlMatricula: ['', Validators.required],
+      secondCtrlBatalhao: ['', Validators.required],
+      secondCtrlEspecialidade: ['', Validators.required],
+      secondCtrlPatente: ['', Validators.required],
+
+    });
+    this.thirdFormGroup = this._formBuilder.group({
+      thirdCtrlEmail: ['', Validators.required],
+      thirdCtrlSenha: ['', Validators.required],
+      thirdCtrlConfirmSenha: ['', Validators.required],
     });
   }
 }

@@ -5,8 +5,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BombeiroModule } from './Bombeiros/bombeiro.module';
+//import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDividerModule } from '@angular/material/divider';
+
+
 
 
 @NgModule({
@@ -19,7 +24,11 @@ import { BombeiroModule } from './Bombeiros/bombeiro.module';
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    BombeiroModule
+    BombeiroModule,
+   // MatMenuModule,
+    MatButtonModule,
+    MatDividerModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-cadastro',
   templateUrl: './cadastro.component.html',
-  styleUrls: ['./cadastro.component.css']
+  styleUrls: ['./cadastro.component.css'],
 })
 export class CadastroComponent implements OnInit {
   isLinear = true;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
+  fourthrFormGroup: FormGroup;
 
   constructor(private _formBuilder: FormBuilder) {}
 
@@ -30,12 +30,20 @@ export class CadastroComponent implements OnInit {
       secondCtrlBatalhao: ['', Validators.required],
       secondCtrlEspecialidade: ['', Validators.required],
       secondCtrlPatente: ['', Validators.required],
-
     });
     this.thirdFormGroup = this._formBuilder.group({
-      thirdCtrlEmail: ['', Validators.required],
+      thirdCtrlEmail: ['', Validators.required, Validators.email],
       thirdCtrlSenha: ['', Validators.required],
       thirdCtrlConfirmSenha: ['', Validators.required],
+    });
+
+    this.fourthrFormGroup = this._formBuilder.group({
+      fourthCtrlRua: ['', Validators.required],
+      fourthCtrlNumero: ['', Validators.required],
+      fourthCtrlCep: ['', Validators.required],
+      fourthCtrlDescricao: [''],
+      fourthCtrlComplemento: [''],
+      fourthCtrlReferencia: [''],
     });
   }
 }

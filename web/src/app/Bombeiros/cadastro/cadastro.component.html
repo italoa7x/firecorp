@@ -1,5 +1,7 @@
 <div style="text-align: center; margin-top: 2%">
-  <mat-label style="font-size: 45px"> CADASTRO DE BOMBEIRO </mat-label>
+  <mat-label style="font-size: 45px">
+    {{ atualizaBombeiro$ ? "EDIÇÃO DE BOMBEIRO " : "CADASTRO DE BOMBEIRO" }}
+  </mat-label>
 </div>
 <mat-horizontal-stepper
   [linear]="isLinear"
@@ -36,7 +38,6 @@
               <input
                 matInput
                 placeholder="00/00/0000"
-                type="date"
                 formControlName="firstCtrlData"
                 required
               />
@@ -174,7 +175,6 @@
                 matInput
                 placeholder="Batalhão"
                 formControlName="secondCtrlBatalhao"
-                required
               />
             </mat-form-field>
           </div>
@@ -202,7 +202,6 @@
                 matInput
                 placeholder="Especialidade"
                 formControlName="secondCtrlEspecialidade"
-                required
               />
             </mat-form-field>
           </div>
@@ -272,7 +271,6 @@
                 matInput
                 placeholder="Número"
                 formControlName="fourthCtrlNumero"
-                type="number"
                 required
               />
             </mat-form-field>
@@ -308,6 +306,7 @@
                 matInput
                 placeholder="Complemento"
                 formControlName="fourthCtrlComplemento"
+                type="text"
               />
             </mat-form-field>
           </div>
@@ -381,7 +380,10 @@
           </div>
 
           <div>
-            <mat-form-field style="font-size: 18px; width: 50%">
+            <mat-form-field
+              id="campo-senha"
+              style="font-size: 18px; width: 50%"
+            >
               <mat-label>Senha</mat-label>
               <input
                 matInput
@@ -394,7 +396,10 @@
           </div>
 
           <div>
-            <mat-form-field style="font-size: 18px; width: 50%">
+            <mat-form-field
+              id="campo-confirmacao-senha"
+              style="font-size: 18px; width: 50%"
+            >
               <mat-label>Confirmar Senha</mat-label>
               <input
                 matInput
@@ -435,7 +440,7 @@
               line-height: 50px;
             "
           >
-            Finalizar
+            {{ atualizaBombeiro$ ? "Atualizar" : "Finalizar" }}
           </button>
         </div>
       </div>

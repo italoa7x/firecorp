@@ -42,8 +42,13 @@ export class BombeiroService {
       });
   }
 
-  atualizarBombeiro(bombeiro: Bombeiro): Observable<Bombeiro> {
-    return this.http.put<Bombeiro>(this.BASE_URL, bombeiro);
+  async atualizar(bombeiro: any, codigo: string): Promise<Bombeiro> {
+    return this.http
+      .put(`${this.BASE_URL}/${codigo}`, JSON.stringify(bombeiro), {
+        headers: this.headers,
+      })
+      .toPromise()
+      .then();
   }
 
   buscarPorId(id: string): Observable<Bombeiro> {

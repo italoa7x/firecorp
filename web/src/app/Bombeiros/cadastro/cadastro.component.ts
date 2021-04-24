@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BombeiroService } from '../bombeiro.service';
-import { Bombeiro } from '../listagem/listagem.component';
 
 @Component({
   selector: 'app-cadastro',
@@ -18,19 +17,24 @@ export class CadastroComponent implements OnInit {
 
   bombeiro = new BombeiroInput();
 
+  atualizaBombeiro$ = false;
+  codigoBombeiro = null;
+
   constructor(
     private _formBuilder: FormBuilder,
     private bombeiroService: BombeiroService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit() {
     this.route.params.subscribe((params: any) => {
       const id = params['id'];
       const bombeiroEncontrado$ = this.bombeiroService.buscarPorId(id);
-
+      this.codigoBombeiro = id;
       bombeiroEncontrado$.subscribe((resultado) => {
         this.atualizarFormulario(resultado);
+        this.atualizaBombeiro$ = true;
       });
     });
 
@@ -65,8 +69,39 @@ export class CadastroComponent implements OnInit {
     });
   }
 
-  private atualizarFormulario(bombeiro: Bombeiro) {
-    console.log(bombeiro);
+  private atualizarFormulario(bombeiroParaAtualizar: any) {
+    const { conta, pessoa } = bombeiroParaAtualizar;
+    const { endereco } = pessoa;
+    this.firstFormGroup.patchValue({
+      firstCtrlNome: pessoa.nome,
+      firstCtrlData: pessoa.dataNascimento,
+      firstCtrlRG: pessoa.rg,
+      firstCtrlFone: pessoa.telefone,
+      firstCtrlCPF: pessoa.cpf,
+      firstCtrlExpedidor: pessoa.orgaoExpedidor,
+      firstCtrlSexo: pessoa.sexo,
+    });
+
+    this.secondFormGroup = this._formBuilder.group({
+      secondCtrlMatricula: bombeiroParaAtualizar.matricula,
+      secondCtrlBatalhao: bombeiroParaAtualizar.batalhao,
+      secondCtrlEspecialidade: bombeiroParaAtualizar.especialidade,
+      secondCtrlPatente: bombeiroParaAtualizar.tipoPatente,
+    });
+    this.thirdFormGroup = this._formBuilder.group({
+      thirdCtrlEmail: conta.email,
+      thirdCtrlSenha: conta.senha,
+      thirdCtrlConfirmSenha: conta.senha,
+    });
+
+    this.fourthrFormGroup = this._formBuilder.group({
+      fourthCtrlRua: endereco.rua,
+      fourthCtrlNumero: endereco.numero,
+      fourthCtrlCep: endereco.cep,
+      fourthCtrlDescricao: endereco.descricao,
+      fourthCtrlComplemento: endereco.complemento,
+      fourthCtrlReferencia: endereco.referencia,
+    });
   }
 
   adicionar() {
@@ -100,7 +135,12 @@ export class CadastroComponent implements OnInit {
 
     console.log(this.bombeiro);
 
-    this.bombeiroService.adicionar(this.bombeiro);
+    const resultado = this.atualizaBombeiro$
+      ? this.bombeiroService.atualizar(this.bombeiro, this.codigoBombeiro)
+      : this.bombeiroService.adicionar(this.bombeiro);
+    if (resultado) {
+      this.router.navigate(['bombeiros/listar']);
+    }
   }
 }
 

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { BombeiroService } from '../bombeiro.service';
+import { Bombeiro } from '../listagem/listagem.component';
 
 @Component({
   selector: 'app-cadastro',
@@ -16,10 +18,22 @@ export class CadastroComponent implements OnInit {
 
   bombeiro = new BombeiroInput();
 
-  constructor(private _formBuilder: FormBuilder,
-    private bombeiroService: BombeiroService) {}
+  constructor(
+    private _formBuilder: FormBuilder,
+    private bombeiroService: BombeiroService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit() {
+    this.route.params.subscribe((params: any) => {
+      const id = params['id'];
+      const bombeiroEncontrado$ = this.bombeiroService.buscarPorId(id);
+
+      bombeiroEncontrado$.subscribe((resultado) => {
+        this.atualizarFormulario(resultado);
+      });
+    });
+
     this.firstFormGroup = this._formBuilder.group({
       firstCtrlNome: ['', Validators.required],
       firstCtrlData: ['', Validators.required],
@@ -51,6 +65,10 @@ export class CadastroComponent implements OnInit {
     });
   }
 
+  private atualizarFormulario(bombeiro: Bombeiro) {
+    console.log(bombeiro);
+  }
+
   adicionar() {
     const dadosPessoais = this.firstFormGroup.value;
     const dadosProfissao = this.secondFormGroup.value;
@@ -72,14 +90,16 @@ export class CadastroComponent implements OnInit {
     this.bombeiro.pessoa.endereco.numero = dadosEndereco.fourthCtrlNumero;
     this.bombeiro.pessoa.endereco.cep = dadosEndereco.fourthCtrlCep;
     this.bombeiro.pessoa.endereco.descricao = dadosEndereco.fourthCtrlDescricao;
-    this.bombeiro.pessoa.endereco.complemento = dadosEndereco.fourthCtrlComplemento;
-    this.bombeiro.pessoa.endereco.referencia = dadosEndereco.fourthCtrlReferencia;
+    this.bombeiro.pessoa.endereco.complemento =
+      dadosEndereco.fourthCtrlComplemento;
+    this.bombeiro.pessoa.endereco.referencia =
+      dadosEndereco.fourthCtrlReferencia;
 
     this.bombeiro.conta.email = dadosConta.thirdCtrlEmail;
     this.bombeiro.conta.senha = dadosConta.thirdCtrlSenha;
 
     console.log(this.bombeiro);
-    
+
     this.bombeiroService.adicionar(this.bombeiro);
   }
 }
@@ -100,7 +120,7 @@ export class PessoaInput {
   nome: string;
   cpf: string;
   rg: string;
-  orgaoExpedidor: string
+  orgaoExpedidor: string;
   sexo: string;
   telefone: string;
   dataNascimento: Date;

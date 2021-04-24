@@ -1,7 +1,7 @@
-import { OnInit } from '@angular/core';
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BombeiroService } from '../bombeiro.service';
 
 /**
@@ -19,8 +19,8 @@ export class ListagemComponent implements OnInit, AfterViewInit {
     'matricula',
     'telefone',
     'patente',
+    'acao',
   ];
-
 
   dataSource: any;
 
@@ -28,8 +28,11 @@ export class ListagemComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(private bombeiroService: BombeiroService) {
-  }
+  constructor(
+    private bombeiroService: BombeiroService,
+    private router: Router,
+    private activatRoute: ActivatedRoute
+  ) {}
   ngOnInit(): void {
     this.listar();
   }
@@ -39,16 +42,21 @@ export class ListagemComponent implements OnInit, AfterViewInit {
   }
 
   listar() {
-    this.bombeiroService.listar().then(bombeiros => {
+    this.bombeiroService.listar().then((bombeiros) => {
       this.bombeiros = bombeiros;
       this.carregarTabela();
-    })
+    });
+  }
+
+  atualizar(codigo: string) {
+    this.router.navigate(['bombeiros', codigo], {
+      relativeTo: this.activatRoute,
+    });
   }
 
   carregarTabela() {
     this.dataSource = new MatTableDataSource<Bombeiro>(this.bombeiros);
   }
-
 }
 
 export interface Bombeiro {

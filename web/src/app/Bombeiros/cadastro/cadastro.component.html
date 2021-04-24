@@ -1,68 +1,39 @@
 <div style="text-align: center; margin-top: 2%">
   <mat-label style="font-size: 45px">CADASTRO DE BOMBEIRO</mat-label>
 </div>
-<mat-horizontal-stepper
-  [linear]="isLinear"
-  fxFlex="100"
-  labelPosition="bottom"
-  style="margin-left: 10%; margin-right: 10%"
-  #stepper
->
+<mat-horizontal-stepper [linear]="isLinear" fxFlex="100" labelPosition="bottom"
+  style="margin-left: 10%; margin-right: 10%" #stepper>
   <mat-step [stepControl]="firstFormGroup">
     <form [formGroup]="firstFormGroup">
       <ng-template matStepLabel>DADOS PESSOAIS</ng-template>
 
       <div class="w3-row" style="text-align: center">
-        <div
-          class="w3-row"
-          style="text-align: center; margin-left: 10%; margin-right: 10%"
-        >
+        <div class="w3-row" style="text-align: center; margin-left: 10%; margin-right: 10%">
           <div class="w3-half w3-container" style="text-align: center">
             <mat-form-field style="font-size: 18px; width: 75%">
               <mat-label>Nome</mat-label>
-              <input
-                matInput
-                placeholder="Nome"
-                style="font-size: 18px"
-                formControlName="firstCtrlNome"
-                required
-              />
+              <input matInput placeholder="Nome" style="font-size: 18px" formControlName="firstCtrlNome" required />
             </mat-form-field>
           </div>
 
           <div class="w3-half w3-container" style="text-align: center">
             <mat-form-field style="font-size: 18px; width: 75%">
               <mat-label>Data de Nascimento</mat-label>
-              <input
-                matInput
-                placeholder="00/00/0000"
-                formControlName="firstCtrlData"
-                required
-              />
+              <input matInput placeholder="00/00/0000" formControlName="firstCtrlData" required />
             </mat-form-field>
           </div>
 
           <div class="w3-half w3-container" style="text-align: center">
             <mat-form-field style="font-size: 18px; width: 75%">
               <mat-label>RG</mat-label>
-              <input
-                matInput
-                placeholder="0.000.000"
-                formControlName="firstCtrlRG"
-                required
-              />
+              <input matInput placeholder="0.000.000" formControlName="firstCtrlRG" required />
             </mat-form-field>
           </div>
 
           <div class="w3-half w3-container" style="text-align: center">
             <mat-form-field style="font-size: 18px; width: 75%">
               <mat-label>Telefone</mat-label>
-              <input
-                matInput
-                placeholder="(00)0 0000-0000"
-                formControlName="firstCtrlFone"
-                required
-              />
+              <input matInput placeholder="(00)0 0000-0000" formControlName="firstCtrlFone" required />
             </mat-form-field>
           </div>
 
@@ -70,29 +41,16 @@
             <div>
               <mat-form-field style="font-size: 18px; width: 75%">
                 <mat-label>CPF</mat-label>
-                <input
-                  matInput
-                  placeholder="000.000.000-00"
-                  formControlName="firstCtrlCPF"
-                  required
-                />
+                <input matInput placeholder="000.000.000-00" formControlName="firstCtrlCPF" required />
               </mat-form-field>
             </div>
             <div style="text-align: left; margin-left: 50px">
-              <mat-radio-group
-                aria-label="Select an option"
-                formControlName="firstCtrlSexo"
-                required
-              >
+              <mat-radio-group aria-label="Select an option" formControlName="firstCtrlSexo" required>
                 <div style="margin-top: 10px">
-                  <mat-radio-button value="1" style="color: gray"
-                    >Masculino</mat-radio-button
-                  >
+                  <mat-radio-button value="MASCULINO" style="color: gray">Masculino</mat-radio-button>
                 </div>
                 <div style="margin-top: 20px">
-                  <mat-radio-button value="2" style="color: gray"
-                    >Feminino</mat-radio-button
-                  >
+                  <mat-radio-button value="FEMININO" style="color: gray">Feminino</mat-radio-button>
                 </div>
               </mat-radio-group>
             </div>
@@ -101,44 +59,29 @@
           <div class="w3-half w3-container" style="text-align: center">
             <mat-form-field style="font-size: 18px; width: 75%">
               <mat-label>Órgão Expedidor</mat-label>
-              <input
-                matInput
-                placeholder="Órgão Expedidor"
-                formControlName="firstCtrlExpedidor"
-                required
-              />
+              <input matInput placeholder="Órgão Expedidor" formControlName="firstCtrlExpedidor" required />
             </mat-form-field>
           </div>
         </div>
       </div>
       <div class="w3-row" style="text-align: center; margin-top: 50px">
         <div class="w3-half w3-container" style="text-align: center">
-          <button
-            mat-raised-button
-            matStepperPrevious
-            style="
+          <button mat-raised-button matStepperPrevious style="
               font-size: 28px;
               color: white;
               background-color: red;
               line-height: 50px;
-            "
-          >
-            <a style="text-decoration: none" href="/bombeiros/listar"
-              >Cancelar</a
-            >
+            ">
+            <a style="text-decoration: none" href="/bombeiros/listar">Cancelar</a>
           </button>
         </div>
         <div class="w3-half w3-container" style="text-align: center">
-          <button
-            mat-raised-button
-            matStepperNext
-            style="
+          <button mat-raised-button matStepperNext style="
               font-size: 28px;
               color: white;
               background-color: green;
               line-height: 50px;
-            "
-          >
+            ">
             Continuar
           </button>
         </div>
@@ -150,46 +93,28 @@
       <ng-template matStepLabel>INFORMAÇÕES DA PROFISSÃO</ng-template>
 
       <div class="w3-row" style="text-align: center">
-        <div
-          class="w3-row"
-          style="text-align: center; margin-left: 10%; margin-right: 10%"
-        >
+        <div class="w3-row" style="text-align: center; margin-left: 10%; margin-right: 10%">
           <div>
             <mat-form-field style="font-size: 18px; width: 50%">
               <mat-label>Matrícula</mat-label>
-              <input
-                matInput
-                placeholder="Matrícula"
-                formControlName="secondCtrlMatricula"
-                required
-              />
+              <input matInput placeholder="Matrícula" formControlName="secondCtrlMatricula" required />
             </mat-form-field>
           </div>
 
           <div>
             <mat-form-field style="font-size: 18px; width: 50%">
               <mat-label>Batalhão</mat-label>
-              <input
-                matInput
-                placeholder="Batalhão"
-                formControlName="secondCtrlBatalhao"
-                required
-              />
+              <input matInput placeholder="Batalhão" formControlName="secondCtrlBatalhao" required />
             </mat-form-field>
           </div>
 
           <div>
-            <mat-form-field
-              appearance="fill"
-              style="font-size: 18px; width: 50%"
-            >
+            <mat-form-field appearance="fill" style="font-size: 18px; width: 50%">
               <mat-label>Patente</mat-label>
               <mat-select formControlName="secondCtrlPatente" required>
-                <mat-option value="option1">Soldado</mat-option>
-                <mat-option value="option2" disabled
-                  >Cabo (disabled)</mat-option
-                >
-                <mat-option value="option3">Tenente</mat-option>
+                <mat-option value="SOLDADO">Soldado</mat-option>
+                <mat-option value="option2" disabled>Cabo (disabled)</mat-option>
+                <mat-option value="SEGUNDO_TENENTE">Segundo Tenente</mat-option>
               </mat-select>
             </mat-form-field>
           </div>
@@ -197,12 +122,7 @@
           <div>
             <mat-form-field style="font-size: 18px; width: 50%">
               <mat-label>Especialidade</mat-label>
-              <input
-                matInput
-                placeholder="Especialidade"
-                formControlName="secondCtrlEspecialidade"
-                required
-              />
+              <input matInput placeholder="Especialidade" formControlName="secondCtrlEspecialidade" required />
             </mat-form-field>
           </div>
         </div>
@@ -210,30 +130,22 @@
 
       <div class="w3-row" style="text-align: center; margin-top: 50px">
         <div class="w3-half w3-container" style="text-align: center">
-          <button
-            mat-raised-button
-            matStepperPrevious
-            style="
+          <button mat-raised-button matStepperPrevious style="
               font-size: 28px;
               color: white;
               background-color: red;
               line-height: 50px;
-            "
-          >
+            ">
             Voltar
           </button>
         </div>
         <div class="w3-half w3-container" style="text-align: center">
-          <button
-            mat-raised-button
-            matStepperNext
-            style="
+          <button mat-raised-button matStepperNext style="
               font-size: 28px;
               color: white;
               background-color: green;
               line-height: 50px;
-            "
-          >
+            ">
             Continuar
           </button>
         </div>
@@ -248,77 +160,46 @@
       <ng-template matStepLabel>ENDEREÇO</ng-template>
 
       <div class="w3-row" style="text-align: center">
-        <div
-          class="w3-row"
-          style="text-align: center; margin-left: 10%; margin-right: 10%"
-        >
+        <div class="w3-row" style="text-align: center; margin-left: 10%; margin-right: 10%">
           <div>
             <mat-form-field style="font-size: 18px; width: 50%">
               <mat-label>Rua</mat-label>
-              <input
-                matInput
-                placeholder="Rua"
-                formControlName="fourthCtrlRua"
-                required
-              />
+              <input matInput placeholder="Rua" formControlName="fourthCtrlRua" required />
             </mat-form-field>
           </div>
 
           <div>
             <mat-form-field style="font-size: 18px; width: 50%">
               <mat-label>Número</mat-label>
-              <input
-                matInput
-                placeholder="Número"
-                formControlName="fourthCtrlNumero"
-                type="number"
-                required
-              />
+              <input matInput placeholder="Número" formControlName="fourthCtrlNumero" type="number" required />
             </mat-form-field>
           </div>
 
           <div>
             <mat-form-field style="font-size: 18px; width: 50%">
               <mat-label>CEP</mat-label>
-              <input
-                matInput
-                placeholder="CEP"
-                formControlName="fourthCtrlCep"
-                required
-              />
+              <input matInput placeholder="CEP" formControlName="fourthCtrlCep" required />
             </mat-form-field>
           </div>
 
           <div>
             <mat-form-field style="font-size: 18px; width: 50%">
               <mat-label>Descrição</mat-label>
-              <input
-                matInput
-                placeholder="Descrição"
-                formControlName="fourthCtrlDescricao"
-              />
+              <input matInput placeholder="Descrição" formControlName="fourthCtrlDescricao" />
             </mat-form-field>
           </div>
 
           <div>
             <mat-form-field style="font-size: 18px; width: 50%">
               <mat-label>Complemento</mat-label>
-              <input
-                matInput
-                placeholder="Complemento"
-                formControlName="fourthCtrlComplemento"
-              />
+              <input matInput placeholder="Complemento" formControlName="fourthCtrlComplemento" />
             </mat-form-field>
           </div>
 
           <div>
             <mat-form-field style="font-size: 18px; width: 50%">
               <mat-label>Referência</mat-label>
-              <input
-                matInput
-                placeholder="Referência"
-                formControlName="fourthCtrlReferencia"
-              />
+              <input matInput placeholder="Referência" formControlName="fourthCtrlReferencia" />
             </mat-form-field>
           </div>
         </div>
@@ -326,31 +207,23 @@
 
       <div class="w3-row" style="text-align: center; margin-top: 50px">
         <div class="w3-half w3-container" style="text-align: center">
-          <button
-            mat-raised-button
-            matStepperNext
-            style="
+          <button mat-raised-button matStepperPrevious style="
               font-size: 28px;
               color: white;
               background-color: red;
               line-height: 50px;
-            "
-          >
+            ">
             Voltar
           </button>
         </div>
         <div class="w3-half w3-container" style="text-align: center">
-          <button
-            mat-raised-button
-            matStepperNext
-            style="
+          <button mat-raised-button matStepperNext style="
               font-size: 28px;
               color: white;
               background-color: green;
               line-height: 50px;
-            "
-          >
-            Finalizar
+            ">
+            Continuar
           </button>
         </div>
       </div>
@@ -363,45 +236,26 @@
       <ng-template matStepLabel>INFORMAÇÃO DA CONTA</ng-template>
 
       <div class="w3-row" style="text-align: center">
-        <div
-          class="w3-row"
-          style="text-align: center; margin-left: 10%; margin-right: 10%"
-        >
+        <div class="w3-row" style="text-align: center; margin-left: 10%; margin-right: 10%">
           <div>
             <mat-form-field style="font-size: 18px; width: 50%">
               <mat-label>Email</mat-label>
-              <input
-                matInput
-                placeholder="Matricula"
-                formControlName="thirdCtrlEmail"
-                required
-              />
+              <input matInput placeholder="Matricula" formControlName="thirdCtrlEmail" required />
             </mat-form-field>
           </div>
 
           <div>
             <mat-form-field style="font-size: 18px; width: 50%">
               <mat-label>Senha</mat-label>
-              <input
-                matInput
-                placeholder="Senha"
-                formControlName="thirdCtrlSenha"
-                type="password"
-                required
-              />
+              <input matInput placeholder="Senha" formControlName="thirdCtrlSenha" type="password" required />
             </mat-form-field>
           </div>
 
           <div>
             <mat-form-field style="font-size: 18px; width: 50%">
               <mat-label>Confirmar Senha</mat-label>
-              <input
-                matInput
-                placeholder="Confirmar Senha"
-                formControlName="thirdCtrlConfirmSenha"
-                type="password"
-                required
-              />
+              <input matInput placeholder="Confirmar Senha" formControlName="thirdCtrlConfirmSenha" type="password"
+                required />
             </mat-form-field>
           </div>
         </div>
@@ -409,30 +263,22 @@
 
       <div class="w3-row" style="text-align: center; margin-top: 50px">
         <div class="w3-half w3-container" style="text-align: center">
-          <button
-            mat-raised-button
-            matStepperPrevious
-            style="
+          <button mat-raised-button matStepperPrevious style="
               font-size: 28px;
               color: white;
               background-color: red;
               line-height: 50px;
-            "
-          >
+            ">
             Voltar
           </button>
         </div>
         <div class="w3-half w3-container" style="text-align: center">
-          <button
-            mat-raised-button
-            matStepperNext
-            style="
+          <button (click)="adicionar()" mat-raised-button matStepperNext style="
               font-size: 28px;
               color: white;
               background-color: green;
               line-height: 50px;
-            "
-          >
+            ">
             Finalizar
           </button>
         </div>

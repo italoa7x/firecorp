@@ -11,7 +11,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
-import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
 
 @Configuration
 @EnableWebSecurity
@@ -24,9 +23,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		.cors()
 		.and()
 		.csrf().disable()
-		.authorizeRequests().anyRequest().authenticated()
+		.authorizeRequests().anyRequest().permitAll()
 		.and()
-		.oauth2ResourceServer().jwt().jwtAuthenticationConverter(new JwtAuthenticationConverter());
+		.oauth2ResourceServer().jwt();
 	}
 	
 	@Bean

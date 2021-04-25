@@ -19,8 +19,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.edu.ifpb.firecorp.domain.model.Bombeiro;
 import br.edu.ifpb.firecorp.domain.service.BombeiroService;
+import br.edu.ifpb.firecorp.rest.dto.input.BombeiroAtualizarInput;
 import br.edu.ifpb.firecorp.rest.dto.input.BombeiroCadastroInput;
-import br.edu.ifpb.firecorp.rest.dto.input.BombeiroInput;
 import br.edu.ifpb.firecorp.rest.dto.output.BombeiroOutput;
 
 @RestController
@@ -44,9 +44,9 @@ public class BombeiroController {
 	
 	@PutMapping("/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public BombeiroOutput atualizar(@PathVariable Long id, @RequestBody @Valid BombeiroInput bombeiroInput) {
+	public BombeiroOutput atualizar(@PathVariable Long id, @RequestBody @Valid BombeiroAtualizarInput bombeiroAtualizarInput) {
 		Bombeiro bombeiro = bombeiroService.buscar(id);
-		modelMapper.map(bombeiroInput, bombeiro);
+		modelMapper.map(bombeiroAtualizarInput, bombeiro);
 		bombeiro = bombeiroService.salvar(bombeiro);
 		
 		return mapearParaDtoOutput(bombeiro);

@@ -3,6 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BombeiroService } from '../bombeiro.service';
+import { NavbarService } from '../../navbar/navbar.service';
 
 /**
  * @title Table with pagination
@@ -31,10 +32,12 @@ export class ListagemComponent implements OnInit, AfterViewInit {
   constructor(
     private bombeiroService: BombeiroService,
     private router: Router,
-    private activatRoute: ActivatedRoute
+    private activatRoute: ActivatedRoute,
+    public nav: NavbarService
   ) {}
   ngOnInit(): void {
     this.listar();
+    this.nav.show();
   }
 
   ngAfterViewInit() {

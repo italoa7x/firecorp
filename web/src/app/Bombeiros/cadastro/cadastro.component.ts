@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BombeiroService } from '../bombeiro.service';
+import { NavbarService } from '../../navbar/navbar.service';
 
 @Component({
   selector: 'app-cadastro',
@@ -24,10 +25,13 @@ export class CadastroComponent implements OnInit {
     private _formBuilder: FormBuilder,
     private bombeiroService: BombeiroService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    public nav: NavbarService
   ) {}
 
   ngOnInit() {
+    this.nav.show();
+
     this.route.params.subscribe((params: any) => {
       const id = params['id'];
       const bombeiroEncontrado$ = this.bombeiroService.buscarPorId(id);

@@ -15,4 +15,6 @@ table {
   padding: 2px;
   margin: 10px 0 10px 10px;
   text-align: center;
+  width: 180px;
+  border: solid 1px black;
 }

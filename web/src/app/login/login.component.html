@@ -1,42 +1,24 @@
+<div class="w3-row" style="text-align: center">
+  <div class="w3-container"
+    style="margin-top: 100px ;border: black; border-style: solid; margin-left: 30%; margin-right: 30%;">
+    <div style="margin-top: 30px">
+      <img src="../../assets/unknown.png" alt="" style="width: 130px; height: 130px;">
+    </div>
+    <div>
+      <mat-form-field style="font-size: 18px;  ">
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="Matricula" required />
+      </mat-form-field>
+    </div>
 
-<div class="w3-row" style="background-color: red;">
- <div class="w3-half  w3-container" >
-  <div>
-    <mat-form-field style="font-size: 18px; width: 50%"></mat-form-field>
-      <mat-label>Email</mat-label>
-      <input
-        matInput
-        placeholder="Matricula"
-
-        required
-      />
-    </mat-form-field>
-  </div>
-
-  <div>
-    <mat-form-field
-      id="campo-senha"
-      style="font-size: 18px; width: 50%"
-    >
-      <mat-label>Senha</mat-label>
-      <input
-        matInput
-        placeholder="Senha"
-
-        type="password"
-        required
-      />
-    </mat-form-field>
-  </div>
- </div>
-
-</div>
-
-<div class="w3-row">
-  <div class="w3-half w3-container w3-green">
-    <h2>w3-half</h2>
-  </div>
-  <div class="w3-half w3-container">
-    <h2>w3-half</h2>
+    <div>
+      <mat-form-field id="campo-senha" style="font-size: 18px; ">
+        <mat-label>Senha</mat-label>
+        <input matInput placeholder="Senha" type="password" required />
+      </mat-form-field>
+    </div>
+    <div style="margin-top: 40px; margin-bottom: 40px;">
+      <a href="/bombeiros/listar" mat-raised-button style=" font-size: 18px; border: 1px black solid;box-shadow: inset 5 red; line-height: 35px;">Entrar</a>
+    </div>
   </div>
 </div>

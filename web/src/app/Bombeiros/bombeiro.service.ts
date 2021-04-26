@@ -51,7 +51,7 @@ export class BombeiroService {
       .then();
   }
 
-  buscarPorId(id: string): Observable<Bombeiro> {
+  buscarPorId(id: string): Observable<any> {
     return this.http.get<Bombeiro>(`${this.BASE_URL}/${id}`);
   }
 }

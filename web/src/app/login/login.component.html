@@ -7,18 +7,18 @@
     <div>
       <mat-form-field style="font-size: 18px;  ">
         <mat-label>Email</mat-label>
-        <input matInput placeholder="Matricula" required />
+        <input id="email" name="email" #email matInput placeholder="Email" required />
       </mat-form-field>
     </div>
 
     <div>
       <mat-form-field id="campo-senha" style="font-size: 18px; ">
         <mat-label>Senha</mat-label>
-        <input matInput placeholder="Senha" type="password" required />
+        <input id="senha" name="senha" #senha matInput placeholder="Senha" type="password" required />
       </mat-form-field>
     </div>
     <div style="margin-top: 40px; margin-bottom: 40px;">
-      <a href="/bombeiros/listar" mat-raised-button style=" font-size: 18px; border: 1px black solid;box-shadow: inset 5 red; line-height: 35px;">Entrar</a>
+      <button (click)="autenticar(email.value, senha.value)" mat-raised-button style=" font-size: 18px; border: 1px black solid;box-shadow: inset 5 red; line-height: 35px;">Entrar</button>
     </div>
   </div>
 </div>

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BombeiroService } from '../bombeiro.service';
 import { NavbarService } from '../../navbar/navbar.service';
+import { AlertaService } from 'src/app/shared/alerta.service';
 
 @Component({
   selector: 'app-cadastro',
@@ -26,21 +27,22 @@ export class CadastroComponent implements OnInit {
     private bombeiroService: BombeiroService,
     private route: ActivatedRoute,
     private router: Router,
-    public nav: NavbarService
+    public nav: NavbarService,
+    private alertaService: AlertaService
   ) {}
 
   ngOnInit() {
     this.nav.show();
 
-    this.route.params.subscribe((params: any) => {
-      const id = params['id'];
-      const bombeiroEncontrado$ = this.bombeiroService.buscarPorId(id);
-      this.codigoBombeiro = id;
+    this.codigoBombeiro = this.route.snapshot.params.id;
+
+    if (this.codigoBombeiro) {
+      const bombeiroEncontrado$ = this.bombeiroService.buscarPorId(this.codigoBombeiro);
       bombeiroEncontrado$.subscribe((resultado) => {
         this.atualizarFormulario(resultado);
         this.atualizaBombeiro$ = true;
       });
-    });
+    }
 
     this.firstFormGroup = this._formBuilder.group({
       firstCtrlNome: ['', Validators.required],
@@ -108,12 +110,12 @@ export class CadastroComponent implements OnInit {
     });
   }
 
-  adicionar() {
+  salvar() {
     const dadosPessoais = this.firstFormGroup.value;
     const dadosProfissao = this.secondFormGroup.value;
     const dadosEndereco = this.fourthrFormGroup.value;
     const dadosConta = this.thirdFormGroup.value;
-
+    
     this.bombeiro.pessoa.nome = dadosPessoais.firstCtrlNome;
     this.bombeiro.pessoa.dataNascimento = dadosPessoais.firstCtrlData;
     this.bombeiro.pessoa.rg = dadosPessoais.firstCtrlRG;
@@ -129,22 +131,27 @@ export class CadastroComponent implements OnInit {
     this.bombeiro.pessoa.endereco.numero = dadosEndereco.fourthCtrlNumero;
     this.bombeiro.pessoa.endereco.cep = dadosEndereco.fourthCtrlCep;
     this.bombeiro.pessoa.endereco.descricao = dadosEndereco.fourthCtrlDescricao;
-    this.bombeiro.pessoa.endereco.complemento =
-      dadosEndereco.fourthCtrlComplemento;
-    this.bombeiro.pessoa.endereco.referencia =
-      dadosEndereco.fourthCtrlReferencia;
+    this.bombeiro.pessoa.endereco.complemento = dadosEndereco.fourthCtrlComplemento;
+    this.bombeiro.pessoa.endereco.referencia = dadosEndereco.fourthCtrlReferencia;
 
     this.bombeiro.conta.email = dadosConta.thirdCtrlEmail;
     this.bombeiro.conta.senha = dadosConta.thirdCtrlSenha;
 
-    console.log(this.bombeiro);
-
-    const resultado = this.atualizaBombeiro$
-      ? this.bombeiroService.atualizar(this.bombeiro, this.codigoBombeiro)
-      : this.bombeiroService.adicionar(this.bombeiro);
-    if (resultado) {
-      this.router.navigate(['bombeiros/listar']);
-    }
+    this.atualizaBombeiro$
+      ? this.bombeiroService
+          .atualizar(this.bombeiro, this.codigoBombeiro)
+          .then(() => {
+            this.router.navigateByUrl('/bombeiros/listar');
+            this.alertaService.sucesso('Bombeiro atualizado');
+          })
+          .catch((error) => this.alertaService.errorHandler(error))
+      : this.bombeiroService
+          .adicionar(this.bombeiro)
+          .then(() => {
+            this.router.navigateByUrl('/bombeiros/listar');
+            this.alertaService.sucesso('Bombeiro cadastrado');
+          })
+          .catch((error) => this.alertaService.errorHandler(error));
   }
 }
 

@@ -37,9 +37,10 @@
               <mat-label>Data de Nascimento</mat-label>
               <input
                 matInput
-                placeholder="00/00/0000"
+                placeholder="00-00-0000"
                 formControlName="firstCtrlData"
                 required
+                mask="d0-M0-0000" [dropSpecialCharacters]="false"
               />
             </mat-form-field>
           </div>
@@ -64,6 +65,7 @@
                 placeholder="(00)0 0000-0000"
                 formControlName="firstCtrlFone"
                 required
+                mask="(00)0 0000-0000"
               />
             </mat-form-field>
           </div>
@@ -77,6 +79,7 @@
                   placeholder="000.000.000-00"
                   formControlName="firstCtrlCPF"
                   required
+                  mask="000.000.000-00"
                 />
               </mat-form-field>
             </div>
@@ -171,7 +174,7 @@
           <div>
             <mat-form-field style="font-size: 18px; width: 50%">
               <mat-label>Batalhão</mat-label>
-              <input
+              <input 
                 matInput
                 placeholder="Batalhão"
                 formControlName="secondCtrlBatalhao"
@@ -187,10 +190,17 @@
               <mat-label>Patente</mat-label>
               <mat-select formControlName="secondCtrlPatente" required>
                 <mat-option value="SOLDADO">Soldado</mat-option>
-                <mat-option value="option2" disabled
-                  >Cabo (disabled)</mat-option
-                >
+                <mat-option value="CABO">Cabo</mat-option>
+                <mat-option value="TERCEIRO_SARGENTO">Terceiro Sargento</mat-option>
+                <mat-option value="SEGUNDO_SARGENTO">Segundo Sargento</mat-option>
+                <mat-option value="PRIMEIRO_SARGENTO">Primeiro Sargento</mat-option>
+                <mat-option value="SUBTENENTE">Subtenente</mat-option>
                 <mat-option value="SEGUNDO_TENENTE">Segundo Tenente</mat-option>
+                <mat-option value="PRIMEIRO_TENENTE">Primeiro Tenente</mat-option>
+                <mat-option value="CAPITAO">Capitão</mat-option>
+                <mat-option value="MAJOR">Major</mat-option>
+                <mat-option value="TENENTE_CORONEL">Tenente Coronel</mat-option>
+                <mat-option value="CORONEL">Coronel</mat-option>
               </mat-select>
             </mat-form-field>
           </div>
@@ -379,7 +389,7 @@
             </mat-form-field>
           </div>
 
-          <div>
+          <div *ngIf="!atualizaBombeiro$">
             <mat-form-field
               id="campo-senha"
               style="font-size: 18px; width: 50%"
@@ -395,7 +405,7 @@
             </mat-form-field>
           </div>
 
-          <div>
+          <div *ngIf="!atualizaBombeiro$">
             <mat-form-field
               id="campo-confirmacao-senha"
               style="font-size: 18px; width: 50%"
@@ -430,7 +440,7 @@
         </div>
         <div class="w3-half w3-container" style="text-align: center">
           <button
-            (click)="adicionar()"
+            (click)="salvar()"
             mat-raised-button
             matStepperNext
             style="

@@ -13,6 +13,10 @@ import { MatTableModule } from '@angular/material/table';
 import { BombeirosRouting } from './bombeiro-routing.module';
 import { CadastroComponent } from './cadastro/cadastro.component';
 import { ListagemComponent } from './listagem/listagem.component';
+import { NgxMaskModule, IConfig } from 'ngx-mask'
+
+export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
+
 @NgModule({
   declarations: [CadastroComponent, ListagemComponent],
   imports: [
@@ -28,6 +32,7 @@ import { ListagemComponent } from './listagem/listagem.component';
     MatSelectModule,
     MatTableModule,
     MatPaginatorModule,
+    NgxMaskModule.forRoot()
   ],
 })
 export class BombeiroModule {}

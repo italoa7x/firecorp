@@ -4,6 +4,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BombeiroService } from '../bombeiro.service';
 import { NavbarService } from '../../navbar/navbar.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { AlertaService } from 'src/app/shared/alerta.service';
 
 /**
  * @title Table with pagination
@@ -33,7 +35,8 @@ export class ListagemComponent implements OnInit, AfterViewInit {
     private bombeiroService: BombeiroService,
     private router: Router,
     private activatRoute: ActivatedRoute,
-    public nav: NavbarService
+    public nav: NavbarService,
+    private alertaService: AlertaService
   ) {}
   ngOnInit(): void {
     this.listar();
@@ -48,7 +51,9 @@ export class ListagemComponent implements OnInit, AfterViewInit {
     this.bombeiroService.listar().then((bombeiros) => {
       this.bombeiros = bombeiros;
       this.carregarTabela();
-    });
+    }).catch(erro => {
+      this.alertaService.erro('Erro ao carregar bombeiros')
+    })
   }
 
   atualizar(codigo: string) {

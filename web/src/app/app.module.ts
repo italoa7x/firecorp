@@ -14,7 +14,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { NavbarComponent } from './navbar/navbar.component';
 import { MatInputModule } from '@angular/material/input';
 //import { MatMenuModule } from '@angular/material/menu';
-
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 
@@ -37,6 +37,7 @@ import { MatInputModule } from '@angular/material/input';
     MatFormFieldModule,
     AppRoutingModule,
     // MatMenuModule,
+    MatSnackBarModule
 
   ],
   providers: [],

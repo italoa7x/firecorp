@@ -4,8 +4,13 @@ export default StyleSheet.create({
   container: {
     position: 'absolute',
     marginLeft: '50%',
+    marginTop: '2%',
+    backgroundColor: '#C1C1C1',
+    opacity: 0.5,
   },
   containerPrevisao: {
-    backgroundColor: 'tomato',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'column',
   },
 });

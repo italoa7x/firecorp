@@ -16,7 +16,7 @@ const Maps = () => {
     const {data} = await axios(
       `https://api.hgbrasil.com/weather?key=c4334bf0&lat=${lat}&lon=${lng}&user_ip=remote`,
     );
-    console.log(data);
+
     setPrevisao(data);
   }, 5000);
 

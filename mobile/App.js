@@ -1,8 +1,7 @@
-import React from 'react';
-import Maps from './src/pages/Maps';
-
-const App = () => {
-  return <Maps />;
-};
+import * as React from 'react';
+import Tab from './src/components/Tab';
+function App() {
+  return <Tab />;
+}
 
 export default App;

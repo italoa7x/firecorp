@@ -1,8 +1,9 @@
 import axios from 'axios';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {View} from 'react-native';
-import MapView, {Marker} from 'react-native-maps';
+import MapView, {Marker, Circle} from 'react-native-maps';
 import DetalhesPrevisao from '../DetalhesPrevisao';
+import IconAwesome from 'react-native-vector-icons/FontAwesome5';
 import styles from './styles';
 const Maps = () => {
   const lat = -7.8887727;
@@ -12,13 +13,19 @@ const Maps = () => {
 
   const [previsao, setPrevisao] = useState();
 
-  setTimeout(async () => {
-    const {data} = await axios(
-      `https://api.hgbrasil.com/weather?key=c4334bf0&lat=${lat}&lon=${lng}&user_ip=remote`,
-    );
+  useEffect(() => {
+    function handleData() {
+      setTimeout(async () => {
+        const {data} = await axios(
+          `https://api.hgbrasil.com/weather?key=c4334bf0&lat=${lat}&lon=${lng}&user_ip=remote`,
+        );
 
-    setPrevisao(data);
-  }, 5000);
+        setPrevisao(data.results);
+      }, 5000);
+    }
+
+    handleData();
+  }, []);
 
   return (
     <View style={{flex: 1}}>
@@ -33,6 +40,7 @@ const Maps = () => {
           longitudeDelta: lngDelta,
         }}>
         <Marker
+          title="Acidente de carro"
           coordinate={{
             latitude: lat,
             longitude: lng,
@@ -40,8 +48,19 @@ const Maps = () => {
             longitudeDelta: lngDelta,
           }}
         />
+
+        <Circle
+          radius={1000}
+          center={{
+            latitude: lat,
+            longitude: lng,
+          }}
+        />
       </MapView>
-      <DetalhesPrevisao />
+      <View style={styles.containerFilter}>
+        <IconAwesome name="filter" size={30} color="#000" />
+      </View>
+      <DetalhesPrevisao previsao={previsao} />
     </View>
   );
 };

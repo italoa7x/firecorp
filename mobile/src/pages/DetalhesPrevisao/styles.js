@@ -5,7 +5,7 @@ export default StyleSheet.create({
     position: 'absolute',
     marginLeft: '25%',
     marginTop: '2%',
-    backgroundColor: '#C1C1C1',
+    backgroundColor: '#FFF',
     opacity: 0.5,
   },
   containerPrevisao: {

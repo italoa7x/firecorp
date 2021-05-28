@@ -1,9 +1,9 @@
 import axios from 'axios';
-import React, {useState, useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View} from 'react-native';
-import MapView, {Marker, Circle} from 'react-native-maps';
-import DetalhesPrevisao from '../DetalhesPrevisao';
+import MapView, {Circle, Marker} from 'react-native-maps';
 import IconAwesome from 'react-native-vector-icons/FontAwesome5';
+import DetalhesPrevisao from '../DetalhesPrevisao';
 import styles from './styles';
 const Maps = () => {
   const lat = -7.8887727;
@@ -20,18 +20,18 @@ const Maps = () => {
           `https://api.hgbrasil.com/weather?key=c4334bf0&lat=${lat}&lon=${lng}&user_ip=remote`,
         );
 
+        console.log(data);
         setPrevisao(data.results);
       }, 5000);
     }
 
     handleData();
-  }, []);
+  }, [lat, lng]);
 
   return (
-    <View style={{flex: 1}}>
+    <View style={styles.containerMaps}>
       <MapView
         loadingEnabled
-        showsMyLocationButton
         style={styles.container}
         region={{
           latitude: lat,

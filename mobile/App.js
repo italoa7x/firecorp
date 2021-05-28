@@ -1,7 +1,17 @@
+import {NavigationContainer} from '@react-navigation/native';
 import * as React from 'react';
-import Tab from './src/components/Tab';
+import {Provider} from 'react-redux';
+// import Tab from './src/components/Tab';
+import Stack from './src/components/Stack';
+import store from './src/redux/store';
 function App() {
-  return <Tab />;
+  return (
+    <Provider store={store}>
+      <NavigationContainer>
+        <Stack />
+      </NavigationContainer>
+    </Provider>
+  );
 }
 
 export default App;

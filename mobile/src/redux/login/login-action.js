@@ -1,4 +1,4 @@
-import {FETCH_AUTH, FETCH_AUTH_FAIL, FETCH_AUTH_SUCCESS} from './auth-types';
+import {FETCH_AUTH, FETCH_AUTH_FAIL, FETCH_AUTH_SUCCESS} from './login-types';
 
 export const fecthAuth = user => {
   return {
